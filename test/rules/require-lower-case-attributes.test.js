@@ -29,6 +29,12 @@ function createTest(linter, fixturesPath) {
       it('should not report errors found in XML', function () {
         assert.equal(linter.checkString('doctype xml\ndiv(Class=\'class\')').length, 0);
       });
+
+      it('should not report lower case for known SVG attributes', function () {
+        var result = linter.checkFile(fixturesPath + 'require-lower-case-attributes-svg.pug');
+
+        assert.equal(result.length, 0);
+      });
     });
   });
 }
